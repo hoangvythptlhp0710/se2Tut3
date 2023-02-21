@@ -1,6 +1,11 @@
 package com.example.springboot1.model;
 
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Employee {
@@ -8,9 +13,17 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Length(min = 3, max = 30)
     private String name;
+    @Min(18)
+    @Max(55)
     private int age;
+
+    @NotEmpty(message = "Image cannot be empty")
     private String image;
+
+    @NotEmpty(message = "Address cannot be empty")
     private String address;
 
     //auto-generated getters & setters
